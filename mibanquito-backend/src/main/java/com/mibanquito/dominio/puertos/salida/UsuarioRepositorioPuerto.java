@@ -1,13 +1,9 @@
-private final UsuarioRepositorioPuerto usuarioRepositorioPuerto;
+package com.mibanquito.dominio.puertos.salida;
 
-public LoginServicio(UsuarioRepositorioPuerto usuarioRepositorioPuerto) {
-    this.usuarioRepositorioPuerto = usuarioRepositorioPuerto;
-}
+import com.mibanquito.dominio.modelo.Usuario;
+import java.util.Optional;
 
-public Usuario login(String email, String password) {
-    Usuario usuario = usuarioRepositorioPuerto.buscarPorEmail(email)
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-    // aquí validas password, etc.
-    return usuario;
+public interface UsuarioRepositorioPuerto {
+    Optional<Usuario> buscarPorEmail(String email);
+    Usuario guardar(Usuario usuario);
 }
